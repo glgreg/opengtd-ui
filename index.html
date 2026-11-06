@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenGTD</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded&icon_names=add,arrow_back,checklist,chevron_right,edit,home,local_fire_department,person">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- Aba Início -->
+    <section class="tela tela-aba visivel" id="tela-inicio">
+      <header class="topo">
+        <div class="topo-textos">
+          <p class="sobretitulo">Bem-vindo de volta</p>
+          <h1 id="inicio-nome">Olá!</h1>
+        </div>
+        <p class="chip chip-fogo">
+          <span class="icone">local_fire_department</span>
+          <span id="inicio-streak">0</span>
+        </p>
+      </header>
+
+      <main class="conteudo">
+        <article class="cartao cartao-xp">
+          <div class="xp-linha">
+            <p class="rotulo">Seu XP</p>
+            <p class="chip chip-nivel" id="inicio-nivel">Nível 0</p>
+          </div>
+          <p class="xp-numero"><span id="inicio-xp">0</span> XP</p>
+          <p class="xp-meta" id="inicio-meta"></p>
+        </article>
+
+        <div class="contadores">
+          <div class="contador status-espera">
+            <p class="contador-numero" id="contador-espera">0</p>
+            <p class="rotulo">Em espera</p>
+          </div>
+          <div class="contador status-andamento">
+            <p class="contador-numero" id="contador-andamento">0</p>
+            <p class="rotulo">Em andamento</p>
+          </div>
+          <div class="contador status-concluido">
+            <p class="contador-numero" id="contador-concluidas">0</p>
+            <p class="rotulo">Concluídas</p>
+          </div>
+          <div class="contador status-fracassado">
+            <p class="contador-numero" id="contador-fracassadas">0</p>
+            <p class="rotulo">Fracassadas</p>
+          </div>
+        </div>
+
+        <h2 class="secao-titulo">Em andamento</h2>
+        <ul class="lista" id="lista-andamento"></ul>
+      </main>
+    </section>
+
+    <!-- Aba Tarefas -->
+    <section class="tela tela-aba" id="tela-tarefas">
+      <header class="topo">
+        <div class="topo-textos">
+          <p class="sobretitulo">Sua lista</p>
+          <h1>Tarefas</h1>
+        </div>
+        <button class="botao-redondo" id="botao-nova" type="button">
+          <span class="icone">add</span>
+        </button>
+      </header>
+
+      <main class="conteudo">
+        <ul class="lista" id="lista-tarefas"></ul>
+      </main>
+    </section>
+
+    <!-- Aba Perfil -->
+    <section class="tela tela-aba" id="tela-perfil">
+      <header class="topo">
+        <div class="topo-textos">
+          <p class="sobretitulo">Sua conta</p>
+          <h1>Perfil</h1>
+        </div>
+      </header>
+
+      <main class="conteudo">
+        <div class="perfil-topo">
+          <span class="avatar"><span class="icone">person</span></span>
+          <h2 id="perfil-nome"></h2>
+        </div>
+
+        <div class="estatisticas">
+          <div class="estatistica">
+            <p class="estatistica-numero" id="perfil-nivel">0</p>
+            <p class="rotulo">Nível</p>
+          </div>
+          <div class="estatistica">
+            <p class="estatistica-numero" id="perfil-xp">0</p>
+            <p class="rotulo">XP</p>
+          </div>
+          <div class="estatistica">
+            <p class="estatistica-numero" id="perfil-streak">0</p>
+            <p class="rotulo">Sequência</p>
+          </div>
+        </div>
+
+        <form class="cartao formulario" id="formulario-perfil">
+          <label for="campo-nome">Seu nome</label>
+          <input class="campo" id="campo-nome" type="text" required>
+          <button class="btn btn-primario" type="submit">Salvar nome</button>
+        </form>
+      </main>
+    </section>
+
+    <!-- Navegação de baixo -->
+    <nav class="nav">
+      <button class="nav-botao ativo" id="nav-inicio" type="button">
+        <span class="icone">home</span>
+        Início
+      </button>
+      <button class="nav-botao" id="nav-tarefas" type="button">
+        <span class="icone">checklist</span>
+        Tarefas
+      </button>
+      <button class="nav-botao" id="nav-perfil" type="button">
+        <span class="icone">person</span>
+        Perfil
+      </button>
+    </nav>
+
+    <!-- Tela da pilha: detalhe da tarefa -->
+    <section class="tela tela-pilha" id="tela-detalhe">
+      <header class="topo">
+        <button class="botao-icone botao-voltar" type="button">
+          <span class="icone">arrow_back</span>
+        </button>
+        <h1 class="topo-titulo">Tarefa</h1>
+        <button class="botao-icone" id="botao-editar" type="button">
+          <span class="icone">edit</span>
+        </button>
+      </header>
+
+      <main class="conteudo">
+        <div class="detalhe-topo">
+          <p class="chip" id="detalhe-status"></p>
+          <h2 class="detalhe-titulo" id="detalhe-titulo"></h2>
+          <p class="detalhe-descricao" id="detalhe-descricao"></p>
+        </div>
+
+        <div class="cartao infos">
+          <div class="info">
+            <p class="rotulo">Peso</p>
+            <p class="info-valor info-peso" id="detalhe-peso"></p>
+          </div>
+          <div class="info">
+            <p class="rotulo">Criada em</p>
+            <p class="info-valor" id="detalhe-data"></p>
+          </div>
+          <div class="info">
+            <p class="rotulo">Etiquetas</p>
+            <p class="info-valor" id="detalhe-tags"></p>
+          </div>
+        </div>
+
+        <div class="botoes">
+          <button class="btn btn-primario btn-largo" id="botao-concluir" type="button">Concluir</button>
+          <button class="btn" id="botao-iniciar" type="button">Iniciar</button>
+          <button class="btn" id="botao-fracassar" type="button">Fracassar</button>
+          <button class="btn btn-perigo btn-largo" id="botao-excluir" type="button">Excluir tarefa</button>
+        </div>
+      </main>
+    </section>
+
+    <!-- Tela da pilha: criar e editar tarefa -->
+    <section class="tela tela-pilha" id="tela-formulario">
+      <header class="topo">
+        <button class="botao-icone botao-voltar" type="button">
+          <span class="icone">arrow_back</span>
+        </button>
+        <h1 class="topo-titulo" id="formulario-titulo">Nova tarefa</h1>
+        <span class="espaco-icone"></span>
+      </header>
+
+      <main class="conteudo">
+        <form class="formulario" id="formulario-tarefa">
+          <label for="campo-titulo">Título</label>
+          <input class="campo" id="campo-titulo" type="text" placeholder="Ex.: Estudar Flexbox" required>
+
+          <label for="campo-descricao">Descrição</label>
+          <input class="campo" id="campo-descricao" type="text" placeholder="O que precisa ser feito?">
+
+          <label for="campo-peso">Peso</label>
+          <select class="campo" id="campo-peso">
+            <option value="tranquila">Tranquila</option>
+            <option value="complicada">Complicada</option>
+            <option value="intensa">Intensa</option>
+          </select>
+
+          <label for="campo-tags">Etiquetas</label>
+          <input class="campo" id="campo-tags" type="text" placeholder="faculdade, casa">
+          <p class="dica">Separe as etiquetas com vírgula.</p>
+
+          <button class="btn btn-primario" type="submit">Salvar tarefa</button>
+        </form>
+      </main>
+    </section>
+
+  </div>
+
+</body>
+</html>
