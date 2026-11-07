@@ -296,3 +296,6 @@ formularioTarefa.addEventListener('submit', async (event) => {
 
 // Primeira carga
 carregarTudo();
+
+// Liga o service worker, que deixa o app instalável e abrindo sem internet
+navigator.serviceWorker.register('sw.js');

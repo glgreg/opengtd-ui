@@ -1,0 +1,12 @@
+{
+  "name": "OpenGTD",
+  "short_name": "OpenGTD",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f7f9ff",
+  "theme_color": "#f7f9ff",
+  "icons": [
+    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
